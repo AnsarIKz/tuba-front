@@ -1,0 +1,23 @@
+.review__avatar {
+    height: 48px;
+    width: 48px;
+    line-height: 48px;
+    text-align: center;
+    border-radius: 100px;
+    color: white;
+}
+
+.review {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.review__content {
+    display: flex;
+    flex-direction: row;
+}
+
+.review__text {
+margin-left: 60px;
+}

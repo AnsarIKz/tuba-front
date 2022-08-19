@@ -1,0 +1,16 @@
+.dish-list {
+    display: flex;
+    
+    flex-direction: row;
+}
+
+.order-info {
+    height: 96px;
+    width: 100%;
+    position: fixed;
+    display: flex;
+    bottom: 0;
+    border-top: 1px solid #EDEEF2;
+    justify-content: center;
+    align-items: center;
+}

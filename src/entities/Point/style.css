@@ -1,0 +1,25 @@
+
+.point {
+    width: 307px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 16px;
+    border: 1px solid #EDEEF2;
+    margin: 0 24px;
+    margin-top: 48px;
+}
+
+.point__img {
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    height: 160px;
+    width: 100%;
+    background-color: gray;
+}
+
+
+.point__first {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

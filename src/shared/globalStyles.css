@@ -1,0 +1,42 @@
+.topLayer {
+    z-index: 4;
+}
+.middleLayer {
+    z-index: 3;
+}
+.bottomLayer {
+    z-index: 2;
+}
+
+.pressable {
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.disabled {
+    opacity: 0.5;
+}
+
+.pressable:hover {
+    opacity: 0.75;
+}
+
+.fastTransition {
+    transition: 0.2s;
+}
+
+.casualTransition {
+    transition: 0.4s;
+}
+
+.bgBlack {
+    background-color: black;
+}
+
+.bgPrimary {
+    background-color: #00C48C;
+}
+
+.displayNone {
+    display: none;
+}

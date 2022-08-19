@@ -1,0 +1,28 @@
+.about-us {
+    background-image: '../../assets/img/aboutus-bg.png';
+}
+
+.about-us-introduction {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-us-introduction__description {
+    max-width: 530px    ;
+}
+
+.about-us__our-partners {
+    display: flex;
+    flex-direction: column;
+    
+}
+.about-us__title {
+align-self: center;
+}
+.about-us__partners {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}

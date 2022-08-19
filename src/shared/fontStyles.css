@@ -1,0 +1,72 @@
+* {
+    --defaultFont: 'Nunito';
+}
+
+body {
+    font-family: var(--defaultFont);
+}
+
+.bodyRegular {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.bodyBold {
+    font-size: 16px;
+    font-weight: bold;
+
+}
+
+.captionRegular {
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.captionBold {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.montTitle {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.montTitleRegular {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.montTitleBold {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+
+.montHeader {
+    font-size: 64px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+}
+
+.montHeader2 {
+    font-size: 48px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+}
+
+
+.fontPrimaryColor {
+    color: #00C48C
+}
+
+.fontWhiteColor {
+    color: rgba(255, 255, 255, 0.9)
+}
+
+.fontCaptionColor {
+    color: #83859C
+}

@@ -1,0 +1,47 @@
+.subscribe-news {
+    justify-content: space-around;
+    background-color: #00C48C;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: flex;
+}
+
+.subscribe-news__img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.subscribe-news__content {
+    max-width: 550px;
+    display: flex;
+    align-items: center;
+}
+
+.subscribe-news__info {
+
+}
+
+.subscribe-news__button {
+        padding: 16px 64px;
+        background-color: #222224;
+        border: 0;
+        border-radius: 6px;
+}
+
+.subscribe-news__done {
+
+    background-color: #00C48C;
+}
+
+.subscribe-news__input {
+    padding: 16px 24px;
+    background-color: white;
+    border: 0;
+    border-radius: 6px;
+}
+
+.subscribe-news__error-input {
+    border-left:3px solid #dc3553;
+}
+
