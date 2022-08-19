@@ -1,0 +1,49 @@
+.footer {
+    min-height: 400px;
+    background-color: #222224;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.footer__content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+
+.footer__navigation {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 550px;
+    
+}
+
+.footer__copyright { 
+    margin: auto;
+}
+
+.footer__wave {
+    transform: scale(0.7);
+    animation: wave 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+
+@keyframes wave {
+    0% {
+        transform: rotate(0deg) scale(0.7);
+    }
+    12% {
+        transform: rotate(40deg) scale(0.7);
+    }
+    25% {
+        transform: rotate(0deg) scale(0.7);
+    }
+}
+
+.social__sn {}
