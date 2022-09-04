@@ -10,10 +10,10 @@ import { observer } from "mobx-react-lite";
 import { useNavigate } from "react-router-dom";
 
 function Introduction({ scrollRef }) {
-  const navigation = useNavigate();
-  function scrollTo(elem) {
-    elem.current.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
+  // const navigation = useNavigate();
+  // function scrollTo(elem) {
+  //   elem.current.scrollIntoView({ behavior: "smooth", block: "start" });
+  // }
   return (
     <>
       <div className="introduction bottomLayer">
@@ -26,7 +26,7 @@ function Introduction({ scrollRef }) {
               Мы не про еду, <br />
               Мы про <span className="fontPrimaryColor">ощущения</span>
             </div>
-            <div className="topMargin32 bodyRegular fontWhiteColor">
+            <div className="topMargin48 bodyRegular fontWhiteColor">
               Tuba - Сеть Кафе и Ресторанов, мы предлагаем вам лучшее качество.
               <br></br> Выбирайте лучшее, выбирайте для себя
             </div>

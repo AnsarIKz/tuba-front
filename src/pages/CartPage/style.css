@@ -1,11 +1,80 @@
-.cart-page {
-
+.cart-order {
+    display: flex;
+    flex-direction: row;
 }
 
-.cart-page__dishes {
-
+.cart-order__type {
+    width: auto;
+    display: inline-block;
+    flex-direction: row;
+    border-radius: 14px;
+    background-color: #EDEEF2;
 }
 
-.cart-page__order {
+.cart-order__type-elem {
+    display: inline-block;
+    padding: 14px 30px;
+    border-radius: 14px;
+}
+
+.cart-order-focus {
+    background-color: #00C48C;
+    color:white;
     
+}
+
+.cart-order__inputs {
+    width: 100%;
+    position: relative;
+}
+
+.cart-order__inputs > input {
+    padding: 10px 26px;
+    border: 0px solid black;
+    border-radius: 12px;
+    background-color:#EDEEF2 ;
+    width: calc(100% - 52px);
+}
+
+.cart-order-card {
+padding: 24px 16px;
+border-radius: 14px;
+border: 1px solid #EDEEF2;
+}
+
+.cart-order__subtotal {
+
+}
+
+.cart-order__subtitile {
+    display: flex;
+
+justify-content: space-between;
+    font-size: 16px;
+    color: black;
+}
+
+.cart-order__subtitile > span {
+    font-size: 14px;
+    font-weight: 400;
+    color: #545563;
+    padding-right: 50px;
+}
+.cart-order__title {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 700;
+}
+
+.cart-order__title > span {
+    font-weight: 400;
+}
+
+.cart-order__proceed {
+    border: 0px;
+    border-radius: 8px;
+    padding: 10px 26px;
+    color:white;
+    background-color: #00C48C;
+    width: 100%;
 }

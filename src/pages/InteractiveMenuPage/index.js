@@ -5,11 +5,14 @@ import menuListStore from "../../shared/store/menuListStore";
 import "./style.css";
 import { observer } from "mobx-react-lite";
 import cartStore from "../../shared/store/cartStore";
+import pointDetail from "../../shared/store/pointDetail";
 
 const OrderInfo = observer(() => {
   return (
     <div className="order-info">
-      <div className="montTitle">Итого: {cartStore.getCartSum()}₸</div>
+      <div className="montTitle">
+        Итого: {cartStore.getCartSum(pointDetail.pointDetailDict.id)}₸
+      </div>
     </div>
   );
 });
@@ -21,7 +24,7 @@ function MenuPage() {
       <Block>
         <div className="montTitle">Меню</div>
         <div className="dish-list">
-          {menuListStore.menuListDict.dishes.map(
+          {menuListStore.menuListDict.dishes?.map(
             ({ name, description, price, category, id }) => (
               <Dish
                 key={id}

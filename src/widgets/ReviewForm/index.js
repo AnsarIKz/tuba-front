@@ -4,9 +4,11 @@ import { useState } from "react";
 import { getRateArray } from "../../shared/service";
 import API from "../../shared/API";
 import pointDetail from "../../shared/store/pointDetail";
+import useAlert from "../../shared/Alert/useAlert";
 
 function ReviewForm({ closeDisplayReview }) {
   const size = 3;
+  const { setAlert } = useAlert();
   //
   const [name, setName] = useState("");
   const [text, setText] = useState("");
@@ -19,15 +21,10 @@ function ReviewForm({ closeDisplayReview }) {
       message: text,
       rating: rate,
       cafe: pointDetail.pointDetailDict.id,
-    });
+    })
+      .then((res) => setAlert("Успех!", "success"))
+      .catch((error) => setAlert("Отправьте корректный запрос!", "error"));
     closeDisplayReview();
-
-    console.log({
-      author: name,
-      message: text,
-      rating: rate,
-      cafe: pointDetail.pointDetailDict.id,
-    });
   }
 
   const rating = getRateArray(rate).map((elem, i) => (

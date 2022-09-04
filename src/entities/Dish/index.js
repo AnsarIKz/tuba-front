@@ -1,22 +1,26 @@
 import { observer } from "mobx-react-lite";
 import cartStore from "../../shared/store/cartStore";
+import pointDetail from "../../shared/store/pointDetail";
 import "./style.css";
 
 const AddToCartButton = observer(({ id, data }) => {
   function handleClick() {
-    if (!Boolean(cartStore.findElement(id) + 1)) {
-      cartStore.addToCart({ id, data });
+    if (
+      !Boolean(cartStore.findElement(id, pointDetail.pointDetailDict.id) + 1)
+    ) {
+      cartStore.addToCart({ id, data, cartId: pointDetail.pointDetailDict.id });
     } else {
-      cartStore.removeFromCart(id);
+      cartStore.removeFromCart(id, pointDetail.pointDetailDict.id);
     }
-    console.log();
   }
   return (
     <button
       onClick={handleClick}
       className={
         "dish__add-to-cart casualTransition pressable " +
-        (Boolean(cartStore.findElement(id) + 1) ? "dish__in-cart" : "")
+        (Boolean(cartStore.findElement(id, pointDetail.pointDetailDict.id) + 1)
+          ? "dish__in-cart"
+          : "")
       }
     >
       <svg
@@ -27,19 +31,31 @@ const AddToCartButton = observer(({ id, data }) => {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         style={
-          Boolean(cartStore.findElement(id) + 1) ? { rotate: "45deg" } : {}
+          Boolean(cartStore.findElement(id, pointDetail.pointDetailDict.id) + 1)
+            ? { rotate: "45deg" }
+            : {}
         }
       >
         <path
           d="M9.12012 4.22001V14.02"
-          stroke={Boolean(cartStore.findElement(id) + 1) ? "#00c48c" : "white"}
+          stroke={
+            Boolean(
+              cartStore.findElement(id, pointDetail.pointDetailDict.id) + 1
+            )
+              ? "#00c48c"
+              : "white"
+          }
           strokeWidth="1.68"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
         <path
           d="M4.21973 9.12001H14.0197"
-          stroke={cartStore.findElement(id) + 1 ? "#00c48c" : "white"}
+          stroke={
+            cartStore.findElement(id, pointDetail.pointDetailDict.id) + 1
+              ? "#00c48c"
+              : "white"
+          }
           strokeWidth="1.68"
           strokeLinecap="round"
           strokeLinejoin="round"

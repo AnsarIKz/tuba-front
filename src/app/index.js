@@ -38,6 +38,14 @@ function App() {
             </PointWrapper>
           }
         ></Route>
+        {/* <Route
+          path="/new/:id"
+          element={
+            <PointWrapper>
+              <PointPage />
+            </PointWrapper>
+          }
+        ></Route> */}
         <Route
           path="/interactive-menu/:id"
           element={

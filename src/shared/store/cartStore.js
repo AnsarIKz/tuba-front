@@ -1,46 +1,108 @@
 import { makeAutoObservable, action } from "mobx";
 
 class CartListStore {
-  cartListArr = [];
+  servicePercent = 0;
+  // Нужно брать из настроек КАФЕ
+  cartListDict = {};
+  currentCartId = NaN;
   constructor() {
     makeAutoObservable(this);
   }
 
-  findElement(id) {
-    let index = this.cartListArr.findIndex((item) => item.id == id);
-    return this.cartListArr[index];
-  }
-  addToCart({ id, data }) {
-    if (this.findElement(id)) {
-      return false;
+  getString(cartId) {
+    if (this.cartListDict[`${cartId}`] === undefined) {
+      return "Нету данных";
     } else {
-      this.cartListArr.push({ id: id, count: 1, data: { ...data } });
+      let str = "";
+      this.cartListDict[`${cartId}`].forEach((elem, elemIndex, elemArr) => {
+        str += `${elem.data.title}: ${elem.count} порция(и) - ${
+          elem.data.price * elem.count
+        } тенге \n`;
+        if (elemArr.length - 1 === elemIndex) {
+          str += `Обслуживание - ${
+            this.getCartSum(cartId) / 10 //Тут нужно вместо 10 вывести данные из кафе
+          }Т \nЦена - ${this.getCartSum(cartId)}T \nИтого - ${
+            this.getCartSum(cartId) + this.getCartSum(cartId) / 10
+          }\n`;
+        }
+      });
+      return str;
     }
   }
-  removeFromCart(id) {
-    let index = this.cartListArr.findIndex((item) => item.id === id);
-    this.cartListArr.splice(index, index + 1);
+
+  // if (this.currentCartId !== id) {
+  //   this.cartListArr = [];
+  //   this.currentCartId = id;
+  // }
+
+  findElement(id, cartId) {
+    if (this.cartListDict[`${cartId}`] === undefined) {
+      this.cartListDict[`${cartId}`] = [];
+    }
+    //
+    let index = this.cartListDict[`${cartId}`].findIndex(
+      (item) => item.id == id
+    );
+    return this.cartListDict[`${cartId}`][index];
   }
-  increaseCount(id) {
-    let index = this.cartListArr.findIndex((item) => item.id === id);
-    this.cartListArr[index].count += 1;
+  addToCart({ id, data, cartId }) {
+    if (this.cartListDict[`${cartId}`] === undefined) {
+      this.cartListDict[`${cartId}`] = [];
+    }
+    //
+    if (this.findElement(id, cartId)) {
+      return false;
+    } else {
+      console.log(this.cartListDict[`${cartId}`]);
+      this.cartListDict[`${cartId}`].push({
+        id: id,
+        count: 1,
+        data: { ...data },
+      });
+    }
   }
-  decreaseCount(id) {
-    let index = this.cartListArr.findIndex((item) => item.id == id);
-    if (this.cartListArr[index].count >= 2) {
-      this.cartListArr[index].count -= 1;
+  removeFromCart(id, cartId) {
+    let index = this.cartListDict[`${cartId}`].findIndex(
+      (item) => item.id === id
+    );
+    // this.cartListDict[`${cartId}`][index] = null;
+    this.cartListDict[`${cartId}`].splice(index, 1);
+  }
+  increaseCount(id, cartId) {
+    if (this.cartListDict[`${cartId}`] === undefined) {
+      this.cartListDict[`${cartId}`] = [];
+    }
+    //
+    let index = this.cartListDict[`${cartId}`].findIndex(
+      (item) => item.id === id
+    );
+    this.cartListDict[`${cartId}`][index].count += 1;
+  }
+  decreaseCount(id, cartId) {
+    if (this.cartListDict[`${cartId}`] === undefined) {
+      this.cartListDict[`${cartId}`] = [];
+    }
+    //
+    let index = this.cartListDict[`${cartId}`].findIndex(
+      (item) => item.id === id
+    );
+    if (this.cartListDict[`${cartId}`][index].count >= 2) {
+      this.cartListDict[`${cartId}`][index].count -= 1;
     } else return "error";
   }
 
   clearCart() {
-    this.cartListArr = [];
+    this.cartListDict = {};
   }
-  getCartSum() {
-    if (this.cartListArr.length === 0) {
+  getCartSum(cartId) {
+    if (this.cartListDict[`${cartId}`] === undefined) {
+      this.cartListDict[`${cartId}`] = [];
+    }
+    if (this.cartListDict[`${cartId}`].length === 0) {
       return 0;
     } else {
       let sum = 0;
-      this.cartListArr.forEach((elem) => {
+      this.cartListDict[`${cartId}`].forEach((elem) => {
         sum += elem.data.price * elem.count;
       });
 

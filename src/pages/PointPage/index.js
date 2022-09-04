@@ -49,10 +49,26 @@ const PointPage = observer(() => {
         </div>
         <div className="page__options" onClick={() => onSwitch()}>
           <div className="page__swiper leftMargin48">
-            <div className="swiper__button pressable bodyBold fontPrimaryColor">
+            <div
+              className={
+                "swiper__button casualTransition " +
+                (switchState
+                  ? "montTitle fontPrimaryColor"
+                  : "bodyBold pressable")
+              }
+            >
               Фото
             </div>
-            <div className="swiper__button pressable bodyBold">Карта</div>
+            <div
+              className={
+                "swiper__button casualTransition " +
+                (!switchState
+                  ? "montTitle fontPrimaryColor"
+                  : "bodyBold pressable")
+              }
+            >
+              Карта
+            </div>
           </div>
           <div
             style={{
@@ -114,7 +130,7 @@ const PointPage = observer(() => {
               добавить отзыв
             </div>
           </div>
-          {pointDetailStore.pointDetailDict.reviews.map((element, i) => (
+          {pointDetailStore.pointDetailDict.reviews?.map((element, i) => (
             <Review
               key={i}
               name={element.author}

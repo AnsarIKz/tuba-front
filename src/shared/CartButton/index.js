@@ -1,10 +1,11 @@
 import "./style.css";
 import { useNavigate } from "react-router-dom";
 import pointDetailStore from "../store/pointDetail";
+import { observer } from "mobx-react-lite";
+import cartStore from "../store/cartStore";
 
-function CartButton({ stack }) {
+const CartButton = observer(({ stack }) => {
   const navigation = useNavigate();
-  // let history = useHistory();
   function onButton() {
     if (stack) {
       navigation(-1);
@@ -78,8 +79,17 @@ function CartButton({ stack }) {
           </>
         )}
       </svg>
+      {cartStore.cartListDict[`${pointDetailStore.pointDetailDict.id}`]
+        ?.length !== (0 || undefined) && (
+        <div className="items-in-cart bodyRegular">
+          {
+            cartStore.cartListDict[`${pointDetailStore.pointDetailDict.id}`]
+              ?.length
+          }
+        </div>
+      )}
     </div>
   );
-}
+});
 
 export default CartButton;

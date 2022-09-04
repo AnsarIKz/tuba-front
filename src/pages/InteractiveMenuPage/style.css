@@ -1,7 +1,9 @@
 .dish-list {
     display: flex;
-    
+    flex-wrap: wrap;
     flex-direction: row;
+    overflow-y: hidden;
+    margin-bottom: 150px;
 }
 
 .order-info {
@@ -13,4 +15,5 @@
     border-top: 1px solid #EDEEF2;
     justify-content: center;
     align-items: center;
+    background-color: white;
 }

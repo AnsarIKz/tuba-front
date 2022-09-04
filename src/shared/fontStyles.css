@@ -6,6 +6,11 @@ body {
     font-family: var(--defaultFont);
 }
 
+.bodyTitle {
+    font-size: 20px;
+    font-weight: bold;
+}
+
 .bodyRegular {
     font-size: 16px;
     font-weight: 400;

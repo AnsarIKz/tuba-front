@@ -1,22 +1,22 @@
 import { makeAutoObservable, action } from "mobx";
 import API from "../API";
 
-class NewsListStore {
-  newsListArr = [];
+class NewsDetailStore {
+  newsDetailDict = [];
   state = "pending";
   constructor() {
     makeAutoObservable(this);
   }
-  fetchNewsList(setState) {
-    this.newsListArr = [];
+  fetchNewsDetail(id) {
+    this.newsDetailDict = {};
     this.state = "pending";
-    API.get("news/list/").then(
+    API.get(`news/detail/${id}`).then(
       action("fetchSuccess", (response) => {
-        console.log("GET NEWSLIST");
-        this.newsListArr = response.data;
+        console.log("GET POINTDETAIL");
+
+        this.newsDetailDict = response.data;
 
         this.state = "done";
-        setState("done");
       }),
       action("fetchError", (error) => {
         this.state = "error";
@@ -25,4 +25,4 @@ class NewsListStore {
   }
 }
 
-export default new NewsListStore();
+export default new NewsDetailStore();

@@ -2,12 +2,15 @@ import { observer } from "mobx-react-lite";
 import { useState } from "react";
 import useAlert from "../../shared/Alert/useAlert";
 import cartStore from "../../shared/store/cartStore";
+import pointDetail from "../../shared/store/pointDetail";
 import "./style.css";
 
 const Price = observer((elem, index) => {
   return (
     <div className="cart-dish__price montTitleRegular fontPrimaryColor leftMargin48">
-      {cartStore.findElement(elem.id).count * elem.data.price}₸
+      {cartStore.findElement(elem.id, pointDetail.pointDetailDict.id)?.count *
+        elem.data.price}
+      ₸
     </div>
   );
 });
@@ -19,11 +22,20 @@ const Counter = observer((elem, index) => {
       <button
         className={
           "counter__dec " +
-          (cartStore.findElement(elem.id).count < 2 ? "disabled" : "")
+          (cartStore.findElement(elem.id, pointDetail.pointDetailDict.id)
+            ?.count < 2
+            ? "disabled"
+            : "")
         }
-        disabled={cartStore.findElement(elem.id).count < 2}
+        disabled={
+          cartStore.findElement(elem.id, pointDetail.pointDetailDict.id)
+            ?.count < 2
+        }
         onClick={() => {
-          let res = cartStore.decreaseCount(elem.id);
+          let res = cartStore.decreaseCount(
+            elem.id,
+            pointDetail.pointDetailDict.id
+          );
           if (res === "error") {
             setAlert("Данное действие невозможно", "error");
           }
@@ -49,12 +61,12 @@ const Counter = observer((elem, index) => {
         className="leftMargin12 rightMargin12 montTitle"
         style={{ fontSize: "22px", verticalAlign: "middle" }}
       >
-        {cartStore.findElement(elem.id).count}
+        {cartStore.findElement(elem.id, pointDetail.pointDetailDict.id)?.count}
       </div>
       <button
         className="counter__inc"
         onClick={() => {
-          cartStore.increaseCount(elem.id);
+          cartStore.increaseCount(elem.id, pointDetail.pointDetailDict.id);
         }}
       >
         <svg
@@ -84,7 +96,7 @@ const Counter = observer((elem, index) => {
   );
 });
 
-function CartDish({ data, id }) {
+const CartDish = ({ data, id }) => {
   const [state, setState] = useState("ready");
   if (state === "deleted") {
     return <></>;
@@ -110,7 +122,7 @@ function CartDish({ data, id }) {
             className="cart-dish__delete leftMargin24 pressable"
             onClick={() => {
               setState("deleted");
-              cartStore.removeFromCart(id);
+              cartStore.removeFromCart(id, pointDetail.pointDetailDict.id);
             }}
           >
             <svg
@@ -120,7 +132,7 @@ function CartDish({ data, id }) {
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <g clip-path="url(#clip0_1_1276)">
+              <g clipPath="url(#clip0_1_1276)">
                 <path
                   d="M2.315 4.81348H3.66424L14.4581 4.81348"
                   stroke="#C7C8D2"
@@ -152,6 +164,6 @@ function CartDish({ data, id }) {
       </div>
     );
   }
-}
+};
 
 export default CartDish;
