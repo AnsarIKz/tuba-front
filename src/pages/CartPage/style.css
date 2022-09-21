@@ -78,3 +78,31 @@ justify-content: space-between;
     background-color: #00C48C;
     width: 100%;
 }
+
+
+@media (max-width:1280px) {
+
+}
+
+@media (max-width:1024px) {
+
+}
+
+@media (max-width:768px) {
+    .cart-order {
+        display: flex;
+        justify-content: space-between;
+    }
+.cart-order__payment-info {
+    margin-left: 0;
+}
+}
+
+@media (max-width:680px) {
+    .cart-order {
+        flex-direction: column;
+    }
+    .cart-order__payment-info {
+        margin-top: 24px;
+    }
+}

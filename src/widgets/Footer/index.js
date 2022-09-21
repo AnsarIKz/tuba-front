@@ -87,7 +87,7 @@ const Footer = () => {
               <div> info@tubagroup.kz</div>
             </div>
           </div>
-          <div>
+          <div className="footer__img">
             <img className="footer__wave" src={wave}></img>
           </div>
         </div>

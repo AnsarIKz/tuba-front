@@ -14,6 +14,7 @@ import AboutUsPage from "../pages/AboutUsPage";
 import CartPage from "../pages/CartPage";
 import PointWrapper from "../shared/Hoc/PointWrapper";
 import AlertPopup from "../shared/Alert/AlertPopup";
+import NewsDetailPage from "../pages/NewsDetailPage";
 
 function App() {
   const onScroll = () => {
@@ -38,14 +39,10 @@ function App() {
             </PointWrapper>
           }
         ></Route>
-        {/* <Route
-          path="/new/:id"
-          element={
-            <PointWrapper>
-              <PointPage />
-            </PointWrapper>
-          }
-        ></Route> */}
+        <Route
+          path="/news/:id"
+          element={<NewsDetailPage></NewsDetailPage>}
+        ></Route>
         <Route
           path="/interactive-menu/:id"
           element={

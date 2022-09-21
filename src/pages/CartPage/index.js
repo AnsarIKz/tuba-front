@@ -9,6 +9,8 @@ import "./style.css";
 import { isValidPhoneNumber } from "react-phone-number-input";
 import API from "../../shared/API";
 import { observer } from "mobx-react-lite";
+import useAlert from "../../shared/Alert/useAlert";
+import { useNavigate } from "react-router-dom";
 
 const CartOrder = observer(() => {
   const [orderType, setOrderType] = useState("here");
@@ -16,28 +18,48 @@ const CartOrder = observer(() => {
   const [phone, setPhone] = useState("");
   const [name, setName] = useState("");
   const [tableNumber, setTableNumber] = useState();
+
+  const [formState, setFormState] = useState("ready");
+
+  const navigation = useNavigate();
+  const { setAlert } = useAlert();
+
   function createOrder() {
+    setFormState("pending");
     if (isValidPhoneNumber(phone) && tableNumber > 0 && name.length > 1) {
-      console.log(cartStore.getString(pointDetail.pointDetailDict.id));
       API.post("order/create/", {
-        info: cartStore.getString(pointDetail.pointDetailDict.id),
+        info: cartStore.getString(pointDetail.pointDetailDict.id, {
+          orderType,
+          address,
+          phone,
+          name,
+          tableNumber,
+        }),
         state: "pending",
       })
         .then(() => {
-          cartStore.clearCart();
+          cartStore.clearCart(pointDetail.pointDetailDict.id);
+          navigation(-1);
+          setAlert("Заказ отправлен!", "success");
+          setFormState("ready");
         })
-        .catch();
+        .catch(() => {
+          setAlert("Ошибка", "error");
+          setFormState("ready");
+        });
     } else {
       // oshibka
+
       console.log("Oshibka");
+      setFormState("ready");
     }
   }
   return (
     <div
       className={
         "cart-order " +
-        (cartStore.cartListDict[`${pointDetail.pointDetailDict.id}`].length !==
-        0
+        (cartStore.cartListDict[`${pointDetail.pointDetailDict.id}`]?.length !==
+          0 && formState === "ready"
           ? ""
           : "disabled")
       }
@@ -127,6 +149,11 @@ const CartOrder = observer(() => {
           T
         </div>
         <input
+          disabled={
+            formState !== "ready" ||
+            cartStore.cartListDict[`${pointDetail.pointDetailDict.id}`]
+              ?.length === 0
+          }
           type={"submit"}
           className="cart-order__proceed bodyRegular pressable topMargin24"
           value={"Заказать"}

@@ -1,15 +1,14 @@
 .dish-card {
-    width: 307px;
     border-radius: 14px;
     border: 1px solid #EDEEF2;
 
 }
 
 .dish__img {
-    width: 270px;
+    width: 100%;
     height: 150px;
     border-radius: 10px;
-    background-color: black;
+    
 }
 
 
@@ -45,17 +44,25 @@
 
 
 .cart-dish {
-    display: flex;
+    display: grid;
     flex-direction: row;
     justify-content: space-between;
+    grid-template-columns: 150px 200px 200px 50px;
 }
 
-/* .cart-dish__content {
+.cart-dish__actions {
+    display: flex;
+    align-self: center;
+}
 
-} */
+.cart-dish__delete {
+    display: flex;
+    align-self: center;
+}
+
 
 .cart-dish__img {
-    width: 72px;
+    width: 150px;
     height: 72px;
     border-radius: 12px;
     background-color: black;
@@ -65,21 +72,9 @@
     flex:1
 }
 
-.cart-dish__title {
-
-}
-
-.cart-dish__description {
-
-}
-
 .cart-dish__actions {
 display: flex;
 flex-direction: row;
-}
-
-.cart-dish__price {
-
 }
 
 
@@ -92,9 +87,69 @@ flex-direction: row;
     display: flex;
     justify-content: center;
     align-items: center;
-border: 0px;
-border-radius: 7px;
-width: 32px;
-height: 32px;
-background-color: #F3F4FF;
+    border: 0px;
+    border-radius: 7px;
+    width: 32px;
+    height: 32px;
+    background-color: #F3F4FF;
+}
+
+
+
+@media (max-width:1280px) {
+
+    .dish-content {
+        width: 92%;
+        
+    }
+    .dish__img {
+        height: 200px;
+    }
+}
+
+@media (max-width:1024px) {
+    .dish-content {
+        width: 90%;
+        
+    }
+    .dish__img {
+        height: 150px;
+    }
+
+    .cart-dish__img {
+        width: 100px;
+    }
+    .cart-dish {
+        grid-template-columns: 100px 160px 200px 50px;
+    }
+}
+
+@media (max-width:768px) {
+    .cart-dish__img {
+        width: 90px;
+        height: 60px;
+    }
+    .cart-dish__description {
+        display: none;
+    }
+    .cart-dish__info {
+        display: none;
+    }
+    .cart-dish {
+        grid-template-columns: 100px 200px 50px;
+    }
+}
+
+@media (max-width:680px) {
+    .cart-dish__img {
+        width: 70px;
+        height: 50px;
+    }
+    .cart-dish {
+        grid-template-columns: 80px 190px 50px;
+    }
+
+    .cart-dish__price {
+        margin-left: 16px;
+    }
 }

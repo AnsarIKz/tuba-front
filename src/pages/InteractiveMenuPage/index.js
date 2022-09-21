@@ -6,6 +6,7 @@ import "./style.css";
 import { observer } from "mobx-react-lite";
 import cartStore from "../../shared/store/cartStore";
 import pointDetail from "../../shared/store/pointDetail";
+import { useState } from "react";
 
 const OrderInfo = observer(() => {
   return (
@@ -18,23 +19,52 @@ const OrderInfo = observer(() => {
 });
 
 function MenuPage() {
+  let previousCategory = "";
   return (
     <>
       <PointHeader></PointHeader>
       <Block>
-        <div className="montTitle">Меню</div>
+        {/* Сериализовать по категориям и создать два перебора массива */}
+        <div className="montHeader">Меню</div>
         <div className="dish-list">
           {menuListStore.menuListDict.dishes?.map(
-            ({ name, description, price, category, id }) => (
-              <Dish
-                key={id}
-                title={name}
-                description={description}
-                price={price}
-                category={category}
-                id={id}
-              ></Dish>
-            )
+            ({ name, description, price, category, id, photo }) => {
+              if (previousCategory !== category?.id) {
+                previousCategory = category?.id;
+                return (
+                  <>
+                    <div
+                      style={{}}
+                      className="dish-list__category-name montTitle topMargin48"
+                    >
+                      {category?.name}
+                    </div>
+                    <Dish
+                      img={photo}
+                      newLine={true}
+                      title={name}
+                      description={description}
+                      price={price}
+                      category={category}
+                      id={id}
+                      key={id}
+                    ></Dish>
+                  </>
+                );
+              } else {
+                return (
+                  <Dish
+                    key={id}
+                    img={photo}
+                    title={name}
+                    description={description}
+                    price={price}
+                    category={category}
+                    id={id}
+                  ></Dish>
+                );
+              }
+            }
           )}
         </div>
       </Block>

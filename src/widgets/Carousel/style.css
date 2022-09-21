@@ -33,3 +33,11 @@
     background-color: rgba(0, 196, 140, 1);
     border-radius: 100px;
 }
+
+
+
+@media (max-width:680px) {
+    .carousel__content {
+        height: 530px;
+    }
+}

@@ -10,10 +10,6 @@ import { observer } from "mobx-react-lite";
 import { useNavigate } from "react-router-dom";
 
 function Introduction({ scrollRef }) {
-  // const navigation = useNavigate();
-  // function scrollTo(elem) {
-  //   elem.current.scrollIntoView({ behavior: "smooth", block: "start" });
-  // }
   return (
     <>
       <div className="introduction bottomLayer">
@@ -22,7 +18,7 @@ function Introduction({ scrollRef }) {
         <div className="introduction-bg__circle bgCircleThree middleLayer"></div>{" "}
         <div className="introduction__content topLayer">
           <div className="introduction__text">
-            <div className="montHeader fontWhiteColor">
+            <div className=" montHeader fontWhiteColor">
               Мы не про еду, <br />
               Мы про <span className="fontPrimaryColor">ощущения</span>
             </div>
@@ -30,23 +26,6 @@ function Introduction({ scrollRef }) {
               Tuba - Сеть Кафе и Ресторанов, мы предлагаем вам лучшее качество.
               <br></br> Выбирайте лучшее, выбирайте для себя
             </div>
-            {/* <div className="introduction__actions topMargin48">
-              <CustomButton
-                title="Наши точки"
-                action={() => {
-                  scrollTo(scrollRef);
-                }}
-              ></CustomButton>
-              <span className="leftMargin24 fontWhiteColor bodyRegular">
-                или
-                <span
-                  onClick={() => navigation("/about-us/")}
-                  className="bodyBold fontPrimaryColor leftMargin8 pressable"
-                >
-                  Tuba Group
-                </span>
-              </span>
-            </div> */}
           </div>
           <IntroductionAnimationPart></IntroductionAnimationPart>
         </div>
@@ -82,6 +61,7 @@ const IntroductionAnimationPart = observer(() => {
         }
         src={Meat}
       ></img>
+      <img className={"canvas__elem5"} src={Pancake}></img>
     </div>
   );
 });

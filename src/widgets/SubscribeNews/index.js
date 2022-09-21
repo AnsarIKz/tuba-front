@@ -50,18 +50,18 @@ function SubscribeNews() {
                 onChange={handleChangeEmail}
                 className={
                   "subscribe-news__input bodyRegular casualTransition " +
-                  (state == "error" ? "subscribe-news__error-input" : "")
+                  (state === "error" ? "subscribe-news__error-input" : "")
                 }
                 type={"email"}
                 placeholder="Эл. Почта"
-                disabled={state == "done"}
+                disabled={state === "done"}
               ></input>
               <button
                 className={
-                  "leftMargin12 subscribe-news__button bodyBold fontWhiteColor casualTransition " +
-                  (state != "done" ? "pressable" : "disabled")
+                  " subscribe-news__button bodyBold fontWhiteColor casualTransition " +
+                  (state !== "done" ? "pressable" : "disabled")
                 }
-                disabled={state == "done"}
+                disabled={state === "done"}
                 onClick={subscribe}
               >
                 Подписаться

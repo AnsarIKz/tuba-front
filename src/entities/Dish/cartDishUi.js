@@ -101,11 +101,19 @@ const CartDish = ({ data, id }) => {
   if (state === "deleted") {
     return <></>;
   } else {
+    console.log(data);
     return (
       <div className="cart-dish topMargin32">
-        <div className="cart-dish__img"></div>
+        <div
+          className="cart-dish__img"
+          style={{
+            backgroundImage: `url(${data.img})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        ></div>
         <div className="cart-dish__info leftMargin24">
-          <div className="cart-dish__title bodyBold topMargin8">
+          <div className="cart-dish__title bodyBold">
             {data.title}
             <div className="cart-dish__description bodyRegular fontCaptionColor topMargin4">
               {data.description}
@@ -113,53 +121,53 @@ const CartDish = ({ data, id }) => {
           </div>
         </div>
 
-        <div className="cart-dish__actions topMargin12">
+        <div className="cart-dish__actions">
           {/* Counter */}
           <Counter id={id}></Counter>
           <Price id={id} data={data}></Price>
+        </div>
 
-          <div
-            className="cart-dish__delete leftMargin24 pressable"
-            onClick={() => {
-              setState("deleted");
-              cartStore.removeFromCart(id, pointDetail.pointDetailDict.id);
-            }}
+        <div
+          className="cart-dish__delete leftMargin24 pressable"
+          onClick={() => {
+            setState("deleted");
+            cartStore.removeFromCart(id, pointDetail.pointDetailDict.id);
+          }}
+        >
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 17 17"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <svg
-              width="22"
-              height="22"
-              viewBox="0 0 17 17"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <g clipPath="url(#clip0_1_1276)">
-                <path
-                  d="M2.315 4.81348H3.66424L14.4581 4.81348"
-                  stroke="#C7C8D2"
-                  strokeWidth="1.3155"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
+            <g clipPath="url(#clip0_1_1276)">
+              <path
+                d="M2.315 4.81348H3.66424L14.4581 4.81348"
+                stroke="#C7C8D2"
+                strokeWidth="1.3155"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M5.68804 4.81346L5.68804 3.46422C5.68804 3.10639 5.83019 2.7632 6.08322 2.51017C6.33625 2.25714 6.67943 2.11499 7.03727 2.11499L9.73574 2.11499C10.0936 2.11499 10.4368 2.25714 10.6898 2.51017C10.9428 2.7632 11.085 3.10639 11.085 3.46422V4.81346M13.1088 4.81346L13.1088 14.2581C13.1088 14.6159 12.9667 14.9591 12.7136 15.2122C12.4606 15.4652 12.1174 15.6073 11.7596 15.6073L5.01342 15.6073C4.65558 15.6073 4.3124 15.4652 4.05937 15.2122C3.80634 14.9591 3.66418 14.6159 3.66418 14.2581L3.66418 4.81346L13.1088 4.81346Z"
+                stroke="#C7C8D2"
+                strokeWidth="1.3155"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </g>
+            <defs>
+              <clipPath id="clip0_1_1276">
+                <rect
+                  width="16.1908"
+                  height="16.1908"
+                  fill="white"
+                  transform="translate(0.291138 0.765747)"
                 />
-                <path
-                  d="M5.68804 4.81346L5.68804 3.46422C5.68804 3.10639 5.83019 2.7632 6.08322 2.51017C6.33625 2.25714 6.67943 2.11499 7.03727 2.11499L9.73574 2.11499C10.0936 2.11499 10.4368 2.25714 10.6898 2.51017C10.9428 2.7632 11.085 3.10639 11.085 3.46422V4.81346M13.1088 4.81346L13.1088 14.2581C13.1088 14.6159 12.9667 14.9591 12.7136 15.2122C12.4606 15.4652 12.1174 15.6073 11.7596 15.6073L5.01342 15.6073C4.65558 15.6073 4.3124 15.4652 4.05937 15.2122C3.80634 14.9591 3.66418 14.6159 3.66418 14.2581L3.66418 4.81346L13.1088 4.81346Z"
-                  stroke="#C7C8D2"
-                  strokeWidth="1.3155"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </g>
-              <defs>
-                <clipPath id="clip0_1_1276">
-                  <rect
-                    width="16.1908"
-                    height="16.1908"
-                    fill="white"
-                    transform="translate(0.291138 0.765747)"
-                  />
-                </clipPath>
-              </defs>
-            </svg>
-          </div>
+              </clipPath>
+            </defs>
+          </svg>
         </div>
       </div>
     );

@@ -1,7 +1,8 @@
 import { makeAutoObservable, action } from "mobx";
 
 class CartListStore {
-  servicePercent = 0;
+  servicePercent = 10;
+  deliveryPrice = 750;
   // Нужно брать из настроек КАФЕ
   cartListDict = {};
   currentCartId = NaN;
@@ -9,21 +10,35 @@ class CartListStore {
     makeAutoObservable(this);
   }
 
-  getString(cartId) {
+  getString(cartId, data) {
     if (this.cartListDict[`${cartId}`] === undefined) {
-      return "Нету данных";
+      return "Ошибка";
     } else {
       let str = "";
       this.cartListDict[`${cartId}`].forEach((elem, elemIndex, elemArr) => {
-        str += `${elem.data.title}: ${elem.count} порция(и) - ${
+        str += `${elem.data.title}: ${elem.count} порций(-я) - ${
           elem.data.price * elem.count
-        } тенге \n`;
+        }₸ \n`;
         if (elemArr.length - 1 === elemIndex) {
-          str += `Обслуживание - ${
-            this.getCartSum(cartId) / 10 //Тут нужно вместо 10 вывести данные из кафе
-          }Т \nЦена - ${this.getCartSum(cartId)}T \nИтого - ${
-            this.getCartSum(cartId) + this.getCartSum(cartId) / 10
-          }\n`;
+          if (data.orderType === "here") {
+            str += `\nОбслуживание ${this.servicePercent}% - ${
+              this.getCartSum(cartId) / this.servicePercent //Тут нужно вместо 10 вывести данные из кафе
+            }₸`;
+
+            str += `\nЦена - ${this.getCartSum(cartId)}₸ \nИтого - ${
+              this.getCartSum(cartId) +
+              this.getCartSum(cartId) / this.servicePercent
+            }₸\n`;
+            str += `\n\nНомер стола - ${data.tableNumber}`;
+          } else {
+            str += `\nДоставка - ${this.deliveryPrice}₸`;
+            str += `\nЦена - ${this.getCartSum(cartId)}₸ \nИтого - ${
+              this.getCartSum(cartId) + this.deliveryPrice
+            }₸\n`;
+
+            str += `\n\nАдрес - ${data.address}`;
+          }
+          str += `\nИмя заказчика - ${data.name}\nНомер - ${data.phone}`;
         }
       });
       return str;
@@ -91,8 +106,8 @@ class CartListStore {
     } else return "error";
   }
 
-  clearCart() {
-    this.cartListDict = {};
+  clearCart(cartId) {
+    this.cartListDict[cartId] = [];
   }
   getCartSum(cartId) {
     if (this.cartListDict[`${cartId}`] === undefined) {

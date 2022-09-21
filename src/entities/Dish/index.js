@@ -65,13 +65,19 @@ const AddToCartButton = observer(({ id, data }) => {
   );
 });
 
-function Dish({ title, img, description, price, id }) {
+function Dish({ title, img, description, price, id, category }) {
   return (
-    <div className="dish-card topMargin32 rightMargin32">
+    <div className="dish-card topMargin32">
       <div className="dish-content">
-        <div className="dish__img"></div>
+        <div
+          className="dish__img"
+          style={{
+            backgroundImage: `url(${img})`,
+            backgroundPosition: "center",
+            backgroundSize: "cover",
+          }}
+        ></div>
         <div className="dish__title bodyBold topMargin8">
-          {/* title */}
           {title}
           <div className="dish__description bodyRegular fontCaptionColor topMargin4">
             {description}

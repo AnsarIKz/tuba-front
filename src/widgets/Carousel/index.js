@@ -17,21 +17,30 @@ function Carousel({ eventRef }) {
 
   function handleClick() {
     let id = newsListStore.newsListArr[index].id;
-    navigation(`/`);
+    navigation(`/news/${id}`);
   }
 
   if (state !== "done") {
     return <></>;
   } else {
     return (
-      <div onClick={handleClick} ref={eventRef} className="carousel">
+      <div ref={eventRef} className="carousel">
         <div
-          className="carousel__content"
+          onClick={handleClick}
+          className="carousel__content pressable "
           style={{ backgroundImage: `` }}
         ></div>
         <div className="carousel__slider topMargin24">
-          {newsListStore.newsListArr.map((el, index) => {
-            return <div key={index} className="carousel__sliderPoint"></div>;
+          {newsListStore.newsListArr.map((el, elIndex) => {
+            return (
+              <div
+                key={elIndex}
+                className={
+                  "carousel__sliderPoint " +
+                  (index == elIndex ? "carousel__sliderPointIndex" : "")
+                }
+              ></div>
+            );
           })}
         </div>
       </div>
