@@ -15,6 +15,7 @@ import CartPage from "../pages/CartPage";
 import PointWrapper from "../shared/Hoc/PointWrapper";
 import AlertPopup from "../shared/Alert/AlertPopup";
 import NewsDetailPage from "../pages/NewsDetailPage";
+import HomeWork from "../pages/HomeWork";
 
 function App() {
   const onScroll = () => {
@@ -51,6 +52,7 @@ function App() {
             </PointWrapper>
           }
         ></Route>
+
         <Route
           path="/cart/:id"
           element={

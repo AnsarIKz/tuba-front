@@ -22,7 +22,14 @@ function NewsDetailPage() {
       <PointHeader notPoint={true}></PointHeader>
       <div>
         <Block>
-          <div className="news-detail__img"></div>
+          <div
+            className="news-detail__img"
+            style={{
+              backgroundImage: `url(${newsDetail.newsDetailDict.image})`,
+              backgroundPosition: "center",
+              backgroundSize: "cover",
+            }}
+          ></div>
         </Block>
         <Block>
           <div className="montTitle topMargin48">

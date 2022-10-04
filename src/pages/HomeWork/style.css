@@ -1,0 +1,53 @@
+.carList {
+    display: flex;
+    flex-direction: column;
+}
+
+.car {
+    border: 3px solid blue;
+    border-radius: 10px;
+    margin: 10px 0;
+}
+
+.car__main {
+    display: flex;
+    flex-direction: row;
+
+}
+
+.price {
+    background-color: blue;
+    color:white;
+    border-radius: 4px;
+    margin-left: 5px;
+    padding: 0px 2px;
+}
+
+.car__title {
+    color: blue;
+    font-size: 26px;
+    font-weight: bolder;
+}
+
+.car__param {
+    font-weight: bold;
+}
+
+
+.contact__param {
+    font-weight: bold;
+}
+
+.car__contact {
+    display: flex;
+    justify-content: space-between;
+    width: 98%;
+    margin: 5px auto;
+    background-color: violet;
+    padding: 0 5px;
+    border-radius: 4px;
+}
+
+.contact__email {
+    margin-right: 100px;
+}

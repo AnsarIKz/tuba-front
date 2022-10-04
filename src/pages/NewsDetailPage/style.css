@@ -6,3 +6,8 @@
 }
 
 
+@media (max-width: 680px) {
+    .news-detail__img {
+        height: 200px;
+    }
+}

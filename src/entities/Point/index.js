@@ -11,6 +11,7 @@ const Point = ({
   address,
   average,
   categories,
+  img,
 }) => {
   const navigation = useNavigate();
 
@@ -21,7 +22,16 @@ const Point = ({
       key={id}
       className="point pressable"
     >
-      <div className="point__img">{/* img */}</div>
+      <div
+        className="point__img"
+        style={{
+          backgroundImage: `url(${img})`,
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+        }}
+      >
+        {/* img */}
+      </div>
       <div className="point__wrapper topMargin16 leftMargin16 rightMargin16">
         <div className="point__first">
           {/* title */}

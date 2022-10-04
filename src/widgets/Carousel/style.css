@@ -38,6 +38,6 @@
 
 @media (max-width:680px) {
     .carousel__content {
-        height: 530px;
+        height: 200px;
     }
 }
