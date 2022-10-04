@@ -56,10 +56,7 @@ function AboutUsPage() {
         </Block>
         <Block>
           <div className="bodyRegular about-us-introduction__description">
-            История Novikov Group берет свое начало в 1991 году. Именно в этом
-            году Аркадий Новиков открыл свой первый ресторан — Sirena, который
-            стал первым рыбным рестораном столицы с качественно новым подходом к
-            кухне, обслуживанию, интерьеру и атмосфере.
+            В данный момент страница находится в разработке.
           </div>
           <br></br>
           <br></br>
@@ -76,9 +73,9 @@ function AboutUsPage() {
               Наши партнеры
             </div>
             <div className="about-us__partners topMargin24">
-              <img src={partner1}></img>
+              {/* <img src={partner1}></img>
               <img src={partner2}></img>
-              <img src={partner3}></img>
+              <img src={partner3}></img> */}
             </div>
           </div>
         </Block>
