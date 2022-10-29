@@ -1,7 +1,8 @@
 import { makeAutoObservable, action } from "mobx";
+import pointDetail from "./pointDetail";
 
 class CartListStore {
-  servicePercent = 10;
+  servicePercent = pointDetail.pointDetailDict.service_percent;
   deliveryPrice = 750;
   // Нужно брать из настроек КАФЕ
   cartListDict = {};

@@ -10,15 +10,19 @@ import { useNavigate, useParams } from "react-router-dom";
 import pointDetailStore from "../../shared/store/pointDetail";
 import { observer } from "mobx-react-lite";
 import ReviewForm from "../../widgets/ReviewForm";
+import { getRateArray } from "../../shared/service";
 
 const PointPage = observer(() => {
-  const [switchState, setSwitchState] = useState(true);
   const [displayReview, setDisplayReview] = useState(false);
   const navigation = useNavigate();
   let { id } = useParams();
-  function onSwitch() {
-    setSwitchState(!switchState);
-  }
+  useEffect(
+    () =>
+      pointDetailStore.fetchPointAverageRating(
+        pointDetailStore.pointDetailDict.id
+      ),
+    []
+  );
 
   return (
     <>
@@ -31,7 +35,11 @@ const PointPage = observer(() => {
           <div className="montHeader bottomMargin12">
             {pointDetailStore.pointDetailDict.name}
           </div>
-          <Rating global={true} size={2}></Rating>
+          <Rating
+            rate={getRateArray(pointDetailStore.pointAverageRating)}
+            global={true}
+            size={2}
+          ></Rating>
           <div className="bodyRegular topMargin48">
             {pointDetailStore.pointDetailDict.description}
             <br></br>
@@ -47,8 +55,8 @@ const PointPage = observer(() => {
             className={"topMargin48"}
           ></CustomButton>
         </div>
-        <div className="page__options" onClick={() => onSwitch()}>
-          <div className="page__swiper leftMargin48">
+        <div className="page__options">
+          {/* <div className="page__swiper leftMargin48">
             <div
               className={
                 "swiper__button casualTransition " +
@@ -69,55 +77,28 @@ const PointPage = observer(() => {
             >
               Карта
             </div>
-          </div>
+          </div> */}
           <div
             style={{
               backgroundImage: `url(${pointDetailStore.pointDetailDict.img})`,
             }}
-            className={
-              "page__img leftMargin32" + (switchState ? "" : " displayNone")
-            }
+            className={"page__img leftMargin32"}
           ></div>
-          <div
-            className={
-              "page__map leftMargin32" + (switchState ? " displayNone" : "")
-            }
-          >
-            <div style={{ position: "relative", overflow: "hidden" }}>
-              {/* <a
-                href="https://yandex.kz/maps/org/113387670850/?utm_medium=mapframe&utm_source=maps"
-                style={{
-                  color: "#eee",
-                  fontSize: "12px",
-                  position: "absolute",
-                  top: "0px",
-                }}
-              >
-                Tuba
-              </a> */}
-              {/* <a
-                href="https://yandex.kz/maps/162/almaty/category/cafe/184106390/?utm_medium=mapframe&utm_source=maps"
-                style={{
-                  color: "#eee",
-                  fontSize: " 12px",
-                  position: "absolute",
-                }}
-              >
-                Кафе в Алматы
-              </a> */}
-              <iframe
-                src="https://yandex.kz/map-widget/v1/-/CCURUYRwwC"
-                width="480"
-                height="480"
-                frameBorder="0"
-                overflow="hidden"
-                allowFullScreen={false}
-                style={{ position: "relative" }}
-              ></iframe>
-            </div>
-          </div>
         </div>
       </div>
+      <Block>
+        <div className={"page__map"}>
+          <iframe
+            src={pointDetailStore.pointDetailDict.map_url}
+            width="100%"
+            height="200px"
+            style={{ border: "0px" }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+      </Block>
       <Block>
         <div className="reviews">
           <div className="reviews__title">

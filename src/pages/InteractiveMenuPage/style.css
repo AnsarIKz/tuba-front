@@ -6,6 +6,7 @@
     margin-bottom: 150px;
     grid-template-columns: 307px 307px 307px;
     grid-column-gap:51px;
+    overflow: auto;
 }
 
 .order-info {
@@ -60,6 +61,7 @@
 @media (max-width:680px) {
     .dish-list {
         grid-template-columns: 1fr;
+    
     
     
     }

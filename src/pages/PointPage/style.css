@@ -47,9 +47,10 @@ align-items: flex-start;
 }
 
 .page__map {
-    width: 480px;
-    height: 480px;
-
+    width: 100%;
+}
+.page__map > iframe {
+    border-radius: 10px;
 }
 
 
