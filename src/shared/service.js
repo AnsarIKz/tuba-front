@@ -17,4 +17,14 @@ const validateEmail = (email) => {
     );
 };
 
-export { getRateArray, validateEmail };
+function toDataUrl(url, callback) {
+  var xhr = new XMLHttpRequest();
+  xhr.onload = function () {
+    callback(xhr.response);
+  };
+  xhr.open("GET", url);
+  xhr.responseType = "blob";
+  xhr.send();
+}
+
+export { getRateArray, validateEmail, toDataUrl };

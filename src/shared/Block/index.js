@@ -1,4 +1,4 @@
-import { Fade } from "react-reveal";
+import { Fade } from "react-awesome-reveal";
 import "./style.css";
 
 function Block(props) {

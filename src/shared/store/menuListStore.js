@@ -13,7 +13,8 @@ class MenuListStore {
     API.get(`menu/list/${id}`).then(
       action("fetchSuccess", (response) => {
         console.log("GET MENULIST");
-        this.menuListDict = response.data.menu;
+        this.menuListDict.dishes = response.data;
+
         this.state = "done";
         setState("done");
       }),

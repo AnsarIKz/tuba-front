@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import categoryList from "../store/categoryList";
 import menuListStore from "../store/menuListStore";
 import pointDetailStore from "../store/pointDetail";
 
@@ -8,18 +9,19 @@ function PointWrapper({ children }) {
   const [state, setState] = useState("pending");
   useEffect(() => {
     if (
-      pointDetailStore.state != "done" ||
-      pointDetailStore.pointDetailDict.id != id
+      pointDetailStore.state !== "done" ||
+      pointDetailStore.pointDetailDict.id !== id
     ) {
       pointDetailStore.fetchPointDetail(id);
+      categoryList.fetchCategoryList();
     }
 
-    if (state != "done") {
+    if (state !== "done") {
       menuListStore.fetchMenuList({ id: id, setState: setState });
     }
   }, []);
 
-  return <>{state == "done" && children}</>;
+  return <>{state === "done" && children}</>;
 }
 
 export default PointWrapper;

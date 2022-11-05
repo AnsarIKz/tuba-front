@@ -34,9 +34,15 @@
 }
 
 .bgPrimary {
-    background-color: #00C48C;
+    background-color: #00C48C !important;
 }
 
 .displayNone {
     display: none;
+}
+
+
+.border {
+border-radius: 7px !important;
+border: 2px solid #00C48C !important;
 }

@@ -15,6 +15,7 @@ import CartPage from "../pages/CartPage";
 import PointWrapper from "../shared/Hoc/PointWrapper";
 import AlertPopup from "../shared/Alert/AlertPopup";
 import NewsDetailPage from "../pages/NewsDetailPage";
+import { PageAdmin } from "../pages/AdministrationPage";
 
 function App() {
   const onScroll = () => {
@@ -61,6 +62,14 @@ function App() {
           }
         ></Route>
         <Route path="/about-us" element={<AboutUsPage></AboutUsPage>}></Route>
+        <Route
+          path="/admin/menu/:id"
+          element={
+            <PointWrapper>
+              <PageAdmin></PageAdmin>
+            </PointWrapper>
+          }
+        ></Route>
       </Routes>
     </BrowserRouter>
   );
