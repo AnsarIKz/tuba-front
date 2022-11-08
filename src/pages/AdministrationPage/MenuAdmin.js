@@ -33,7 +33,6 @@ const DishList = () => {
   }, [lazyLoad]);
 
   let listRef = useRef();
-  let listRef = useRef();
 
   return (
     <div ref={listRef} className="dish-list">
