@@ -7,7 +7,7 @@ import categoryList from "../../shared/store/categoryList";
 
 import { useCookies } from "react-cookie";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import DishEdit from "../../entities/Dish/dishEdit";
 import API from "../../shared/API";
 import pointDetail from "../../shared/store/pointDetail";
