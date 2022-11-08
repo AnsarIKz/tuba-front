@@ -2,13 +2,12 @@ import { observer } from "mobx-react-lite";
 import { useState } from "react";
 import API from "../../shared/API";
 import { useCookies } from "react-cookie";
-// import cartStore from "../../shared/store/cartStore";
-// import pointDetail from "../../shared/store/pointDetail";
+
 import "./style.css";
 import { toDataUrl } from "../../shared/service";
 
 const SaveEdits = observer(({ id, data }) => {
-  const [cookies, setCookies, removeCookies] = useCookies();
+  const [cookies, , removeCookies] = useCookies();
   function handleClick() {
     let formData = new FormData();
     let photo = document.querySelector("#image");

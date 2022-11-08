@@ -16,13 +16,22 @@ import PointWrapper from "../shared/Hoc/PointWrapper";
 import AlertPopup from "../shared/Alert/AlertPopup";
 import NewsDetailPage from "../pages/NewsDetailPage";
 import { PageAdmin } from "../pages/AdministrationPage";
+import MainInfoPage from "../shared/store/MainInfoPage";
+import { useState } from "react";
+import categoryList from "../shared/store/categoryList";
 
 function App() {
   const onScroll = () => {
     scroller.setScroll(window.scrollY);
   };
 
+  const [state, setState] = useState("pending");
+
   useEffect(() => {
+    if (state === "pending") {
+      categoryList.fetchCategoryList();
+      MainInfoPage.fetchMainInfo(setState);
+    }
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);

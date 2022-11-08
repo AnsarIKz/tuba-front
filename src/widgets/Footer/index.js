@@ -2,6 +2,8 @@ import "./style.css";
 
 import wave from "../../assets/img/wave.png";
 import { useNavigate } from "react-router-dom";
+import MainInfoPage from "../../shared/store/MainInfoPage";
+import { formatStrToNum } from "../../shared/service";
 
 const Footer = () => {
   const navigate = useNavigate();
@@ -17,6 +19,7 @@ const Footer = () => {
               </div>
               <div className="social__sn">
                 <a
+                  rel="noreferrer"
                   className="pressable"
                   href="https://www.instagram.com/tuba.bogenbaibatira/"
                   target={"_blank"}
@@ -83,12 +86,12 @@ const Footer = () => {
             </div>
             <div className="footer__contacts">
               <div className="montTitle bottomMargin12  ">Контакты</div>
-              <div> +7(707)90-40-506</div>
-              <div> info@tubagroup.kz</div>
+              <div>{formatStrToNum(MainInfoPage.mainInfoDict.number)}</div>
+              <div> {MainInfoPage.mainInfoDict.email}</div>
             </div>
           </div>
           <div className="footer__img">
-            <img className="footer__wave" src={wave}></img>
+            <img alt="wave" className="footer__wave" src={wave}></img>
           </div>
         </div>
         <div className="captionRegular footer__copyright fontWhiteColor">

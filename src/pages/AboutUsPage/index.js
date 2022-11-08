@@ -1,12 +1,12 @@
 import Footer from "../../widgets/Footer";
-import Header from "../../widgets/Header";
+
 import PointHeader from "../../widgets/PointHeader";
 import background from "../../assets/img/aboutus-bg.png";
 import "./style.css";
 import Block from "../../shared/Block";
-import partner1 from "../../assets/img/partner1.svg";
-import partner2 from "../../assets/img/partner2.svg";
-import partner3 from "../../assets/img/partner3.svg";
+// import partner1 from "../../assets/img/partner1.svg";
+// import partner2 from "../../assets/img/partner2.svg";
+// import partner3 from "../../assets/img/partner3.svg";
 
 function AboutUsPage() {
   return (

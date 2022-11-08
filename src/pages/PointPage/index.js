@@ -56,28 +56,6 @@ const PointPage = observer(() => {
           ></CustomButton>
         </div>
         <div className="page__options">
-          {/* <div className="page__swiper leftMargin48">
-            <div
-              className={
-                "swiper__button casualTransition " +
-                (switchState
-                  ? "montTitle fontPrimaryColor"
-                  : "bodyBold pressable")
-              }
-            >
-              Фото
-            </div>
-            <div
-              className={
-                "swiper__button casualTransition " +
-                (!switchState
-                  ? "montTitle fontPrimaryColor"
-                  : "bodyBold pressable")
-              }
-            >
-              Карта
-            </div>
-          </div> */}
           <div
             style={{
               backgroundImage: `url(${pointDetailStore.pointDetailDict.img})`,
@@ -89,6 +67,7 @@ const PointPage = observer(() => {
       <Block>
         <div className={"page__map"}>
           <iframe
+            title="tuba_address"
             src={pointDetailStore.pointDetailDict.map_url}
             width="100%"
             height="200px"

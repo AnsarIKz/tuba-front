@@ -85,7 +85,7 @@ function CreateDishForm() {
   const [description, setDescription] = useState();
   const [price, setPrice] = useState();
   const [category, setCategory] = useState(1);
-  const [cookies, setCookies, removeCookies] = useCookies();
+  const [cookies, , removeCookies] = useCookies();
 
   function createDish(e) {
     e.preventDefault();

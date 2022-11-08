@@ -18,7 +18,6 @@ function Rating({ rate = [1, 1, 1, 0, 0], global, size = 1 }) {
     </svg>
   ));
 
-  // console.log(rating);
   return (
     <div className="rating-feature">
       {rating}

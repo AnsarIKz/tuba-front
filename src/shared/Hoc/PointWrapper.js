@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import categoryList from "../store/categoryList";
 import menuListStore from "../store/menuListStore";
 import pointDetailStore from "../store/pointDetail";
 
@@ -13,7 +12,6 @@ function PointWrapper({ children }) {
       pointDetailStore.pointDetailDict.id !== id
     ) {
       pointDetailStore.fetchPointDetail(id);
-      categoryList.fetchCategoryList();
     }
 
     if (state !== "done") {

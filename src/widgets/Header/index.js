@@ -4,6 +4,7 @@ import "./style.css";
 import scroller from "../../shared/store/scroller";
 import { observer } from "mobx-react-lite";
 import { useNavigate } from "react-router-dom";
+import MainInfoPage from "../../shared/store/MainInfoPage";
 
 const Header = observer(({ eventRef, pointRef }) => {
   const navigation = useNavigate();
@@ -67,6 +68,7 @@ const Header = observer(({ eventRef, pointRef }) => {
           Tuba Group {/* Кнопка вниз */}
         </div>
         <PhoneButton
+          tel={MainInfoPage.mainInfoDict.number}
           theme={scroller.scroll > 750 ? "Black" : "Primary"}
         ></PhoneButton>
       </div>

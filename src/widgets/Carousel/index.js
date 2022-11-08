@@ -17,7 +17,7 @@ function Carousel({ eventRef }) {
     return () => {
       clearInterval(interval);
     };
-  }, [index]);
+  }, []);
 
   function changeSlide(slide) {
     console.log(slide, index);

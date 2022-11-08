@@ -1,6 +1,6 @@
 import "./style.css";
 import cake from "../../assets/img/cake.png";
-import partyImg from "../../assets/img/partying-face.png";
+
 import { useState } from "react";
 import API from "../../shared/API";
 import { validateEmail } from "../../shared/service";
@@ -30,7 +30,7 @@ function SubscribeNews() {
   return (
     <div className="subscribe-news casualTransition">
       <div className="subscribe-news__img">
-        <img src={cake} height={400}></img>
+        <img alt="cake" src={cake} height={400}></img>
       </div>
       <div className="subscribe-news__content">
         <div className="subscribe-news__info">

@@ -1,5 +1,6 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import Block from "../../shared/Block";
+
 import Carousel from "../../widgets/Carousel";
 import Footer from "../../widgets/Footer";
 import Header from "../../widgets/Header";

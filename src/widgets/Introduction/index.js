@@ -1,4 +1,3 @@
-import CustomButton from "../../shared/CustomButton";
 import "./style.css";
 import Steak from "../../assets/img/steak.png";
 import Meat from "../../assets/img/meat.png";
@@ -7,7 +6,6 @@ import Pancake from "../../assets/img/pancake.png";
 
 import scroller from "../../shared/store/scroller";
 import { observer } from "mobx-react-lite";
-import { useNavigate } from "react-router-dom";
 
 function Introduction({ scrollRef }) {
   return (
@@ -38,30 +36,34 @@ const IntroductionAnimationPart = observer(() => {
   return (
     <div className="introduction__animation middleLayer">
       <img
+        alt="steak"
         className={
           scroller.scroll < 170 ? "canvas__elem1" : "canvas__elem1 canvas__end1"
         }
         src={Steak}
       ></img>
       <img
+        alt="pancake"
         className={
           scroller.scroll < 170 ? "canvas__elem2" : "canvas__elem2 canvas__end2"
         }
         src={Pancake}
       ></img>
       <img
+        alt="Burger"
         className={
           scroller.scroll < 170 ? "canvas__elem3" : "canvas__elem3 canvas__end3"
         }
         src={Burger}
       ></img>
       <img
+        alt="Meat"
         className={
           scroller.scroll < 170 ? "canvas__elem4" : "canvas__elem4 canvas__end4"
         }
         src={Meat}
       ></img>
-      <img className={"canvas__elem5"} src={Pancake}></img>
+      <img alt="pancake" className={"canvas__elem5"} src={Pancake}></img>
     </div>
   );
 });

@@ -9,7 +9,6 @@ export function PageAdmin() {
   const [password, setPassword] = useState();
 
   function logIn() {
-    console.log({ username, password });
     API.post("/auth/token/", {
       username,
       password,

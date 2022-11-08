@@ -1,4 +1,5 @@
 import Rating from "../../features/Rating";
+import { getRateArray } from "../../shared/service";
 import "./style.css";
 
 function Review({
@@ -45,7 +46,7 @@ function Review({
           <div className="leftMargin12">
             <div className="bodyBold">{name}</div>
             <div>
-              <Rating />
+              <Rating rate={getRateArray(rating)} />
             </div>
           </div>
         </div>

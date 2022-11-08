@@ -101,7 +101,6 @@ const CartDish = ({ data, id }) => {
   if (state === "deleted") {
     return <></>;
   } else {
-    console.log(data);
     return (
       <div className="cart-dish topMargin32">
         <div

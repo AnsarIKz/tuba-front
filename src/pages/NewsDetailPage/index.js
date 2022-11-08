@@ -4,7 +4,7 @@ import "./style.css";
 import Block from "../../shared/Block";
 import { useEffect, useState } from "react";
 import newsDetail from "../../shared/store/newsDetail";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 function NewsDetailPage() {
   const { id } = useParams();

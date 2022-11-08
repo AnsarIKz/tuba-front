@@ -1,4 +1,4 @@
-import { makeAutoObservable, action } from "mobx";
+import { makeAutoObservable } from "mobx";
 import pointDetail from "./pointDetail";
 
 class CartListStore {
@@ -57,7 +57,7 @@ class CartListStore {
     }
     //
     let index = this.cartListDict[`${cartId}`].findIndex(
-      (item) => item.id == id
+      (item) => item.id === id
     );
     return this.cartListDict[`${cartId}`][index];
   }

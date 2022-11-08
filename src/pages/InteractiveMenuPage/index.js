@@ -7,6 +7,7 @@ import { observer } from "mobx-react-lite";
 import cartStore from "../../shared/store/cartStore";
 import pointDetail from "../../shared/store/pointDetail";
 import { useEffect, useRef, useState } from "react";
+import { useCallback } from "react";
 
 const OrderInfo = observer(() => {
   return (
@@ -22,6 +23,13 @@ const DishList = () => {
   let previousCategory = "";
 
   const [elementCount, setElementCount] = useState(10);
+  const lazyLoad = useCallback(() => {
+    if (listRef.current.scrollHeight - window.pageYOffset < 600) {
+      setElementCount(
+        Math.min(elementCount + 10, menuListStore.menuListDict.dishes?.length)
+      );
+    }
+  });
 
   useEffect(() => {
     // clean up code
@@ -29,17 +37,10 @@ const DishList = () => {
     window.removeEventListener("scroll", lazyLoad);
     window.addEventListener("scroll", lazyLoad, { passive: true });
     return () => window.removeEventListener("scroll", lazyLoad);
-  }, []);
+  }, [lazyLoad]);
 
   let listRef = useRef();
 
-  function lazyLoad(e) {
-    if (listRef.current.scrollHeight - window.pageYOffset < 500) {
-      setElementCount(
-        Math.min(elementCount + 10, menuListStore.menuListDict.dishes?.length)
-      );
-    }
-  }
   return (
     <div ref={listRef} className="dish-list">
       {menuListStore.menuListDict.dishes

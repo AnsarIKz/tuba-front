@@ -174,7 +174,6 @@ function CartPage() {
           <div className="cart-page__dishes">
             {cartStore.cartListDict[`${pointDetail.pointDetailDict.id}`]?.map(
               (item) => {
-                // console.log(item.data);
                 return (
                   <CartDish
                     key={item.id}
