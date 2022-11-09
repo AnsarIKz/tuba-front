@@ -82,6 +82,7 @@ function DishEdit({ title, img, description, price, id, category }) {
             onChange={(e) => setPrice(e.target.value)}
             value={inputPrice}
             className="dish__price montTitleRegular fontPrimaryColor "
+            style={{ width: "150px" }}
           ></input>
 
           <SaveEdits

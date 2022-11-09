@@ -1,7 +1,28 @@
 import { useState } from "react";
 import { useCookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
 import API from "../../shared/API";
-import MenuAdmin from "./MenuAdmin";
+import Block from "../../shared/Block";
+import pointListStore from "../../shared/store/pointList";
+
+function ChoiceCafe() {
+  const navigation = useNavigate();
+  return (
+    <Block>
+      <ol>
+        {pointListStore.pointList.map((i, index) => (
+          <li
+            key={index}
+            className="montTitle pressable"
+            onClick={() => navigation(`/admin/menu/${i.id}`)}
+          >
+            {i.name}
+          </li>
+        ))}
+      </ol>
+    </Block>
+  );
+}
 
 export function PageAdmin() {
   const [cookies, setCookies, removeCookies] = useCookies(["token"]);
@@ -24,7 +45,7 @@ export function PageAdmin() {
   }
 
   if (cookies.token) {
-    return <MenuAdmin></MenuAdmin>;
+    return <ChoiceCafe></ChoiceCafe>;
   } else {
     return (
       <div>

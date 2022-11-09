@@ -86,13 +86,14 @@ function CreateDishForm() {
   const [price, setPrice] = useState();
   const [category, setCategory] = useState(1);
   const [cookies, , removeCookies] = useCookies();
+  let imgRef = useRef();
 
   function createDish(e) {
     e.preventDefault();
     console.log(cookies.token);
     let formData = new FormData();
-    let photo = document.querySelector("#image");
-    formData.append("photo", photo.files[0]);
+
+    formData.append("photo", imgRef.files[0]);
     formData.append("name", name);
     formData.append("description", description);
     formData.append("price", price);
@@ -120,7 +121,7 @@ function CreateDishForm() {
       }}
       onSubmit={createDish}
     >
-      <input id="image" type={"file"} />
+      <input ref={imgRef} id="image" type={"file"} />
       <input
         className="subscribe-news__input border topMargin12"
         onChange={(e) => setName(e.target.value)}

@@ -19,6 +19,8 @@ import { PageAdmin } from "../pages/AdministrationPage";
 import MainInfoPage from "../shared/store/MainInfoPage";
 import { useState } from "react";
 import categoryList from "../shared/store/categoryList";
+import pointListStore from "../shared/store/pointList";
+import MenuAdmin from "../pages/AdministrationPage/MenuAdmin";
 
 function App() {
   const onScroll = () => {
@@ -31,6 +33,9 @@ function App() {
     if (state === "pending") {
       categoryList.fetchCategoryList();
       MainInfoPage.fetchMainInfo(setState);
+    }
+    if (pointListStore.state !== "done") {
+      pointListStore.fetchPointList();
     }
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
@@ -71,14 +76,15 @@ function App() {
           }
         ></Route>
         <Route path="/about-us" element={<AboutUsPage></AboutUsPage>}></Route>
+        <Route path="/admin/menu" element={<PageAdmin></PageAdmin>}></Route>
         <Route
           path="/admin/menu/:id"
           element={
             <PointWrapper>
-              <PageAdmin></PageAdmin>
+              <MenuAdmin></MenuAdmin>
             </PointWrapper>
           }
-        ></Route>
+        />
       </Routes>
     </BrowserRouter>
   );
