@@ -11,6 +11,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import DishEdit from "../../entities/Dish/dishEdit";
 import API from "../../shared/API";
 import pointDetail from "../../shared/store/pointDetail";
+import { useNavigate } from "react-router-dom";
 
 const DishList = () => {
   let previousCategory = "";
@@ -167,12 +168,20 @@ function CreateDishForm() {
 }
 
 function MenuAdmin() {
+  const navigation = useNavigate();
+
   return (
     <>
       <PointHeader></PointHeader>
       <Block>
         {/* Сериализовать по категориям и создать два перебора массива */}
         <div className="montHeader">Меню</div>
+        <div
+          onClick={() => navigation("/admin/menu")}
+          className="pressable topMargin24 bottomMargin24 bodyBold"
+        >
+          Go Back To Choose Menu
+        </div>
         <div>
           <div className="montTitle">Добавить блюдо</div>
           <CreateDishForm></CreateDishForm>
