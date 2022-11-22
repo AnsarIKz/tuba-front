@@ -1,20 +1,32 @@
 import { observer } from "mobx-react-lite";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import API from "../../shared/API";
 import { useCookies } from "react-cookie";
 
 import "./style.css";
 import { toDataUrl } from "../../shared/service";
 
-const SaveEdits = observer(({ id, data }) => {
+const SaveEdits = observer(({ id, data, photoRef }) => {
   const [cookies, , removeCookies] = useCookies();
   function handleClick() {
     let formData = new FormData();
     let photo = document.querySelector("#image");
-    formData.append("photo", photo.files[0]);
+    console.log({
+      name: data.inputName,
+      description: data.inputDescription,
+      price: data.inputPrice,
+      category: data.category.id,
+    });
+    if (photo.files.length > 0) {
+      console.log({ photo: photo.files[0] });
+      formData.append("photo", photo.files[0]);
+    }
     formData.append("name", data.inputName);
+
     formData.append("description", data.inputDescription);
     formData.append("price", data.inputPrice);
+    formData.append("category", data.category.id);
+
     API.put(`/menu/dish/edit/${id}/`, formData, {
       headers: {
         "Content-Type": "multipart/form-data",
@@ -38,10 +50,11 @@ const SaveEdits = observer(({ id, data }) => {
   );
 });
 
-function DishEdit({ title, img, description, price, id, category }) {
+function DishEdit({ title, img, description, price, id, category, menuId }) {
   const [inputPrice, setPrice] = useState(price);
   const [inputDescription, setDescription] = useState(description);
   const [inputName, setName] = useState(title);
+  let photoRef = useRef();
 
   return (
     <div className="dish-card topMargin32">
@@ -57,6 +70,7 @@ function DishEdit({ title, img, description, price, id, category }) {
         <input
           value={toDataUrl(img, (x) => x)}
           type={"file"}
+          ref={photoRef}
           id="image"
         ></input>
         <input
@@ -86,7 +100,14 @@ function DishEdit({ title, img, description, price, id, category }) {
           ></input>
 
           <SaveEdits
-            data={{ inputPrice, inputDescription, inputName }}
+            data={{
+              inputPrice,
+              inputDescription: "",
+              inputName,
+              photoRef,
+              menuId,
+              category,
+            }}
             id={id}
           ></SaveEdits>
         </div>

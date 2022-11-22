@@ -66,13 +66,13 @@ const DishList = () => {
           } else {
             return (
               <DishEdit
-                key={`${id} + ${name}`}
                 img={photo}
                 title={name}
                 description={description}
                 price={price}
                 category={category}
                 id={id}
+                key={`${id} + ${name}`}
               ></DishEdit>
             );
           }
@@ -82,19 +82,24 @@ const DishList = () => {
 };
 
 function CreateDishForm() {
-  const [name, setName] = useState();
-  const [description, setDescription] = useState();
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
   const [price, setPrice] = useState();
-  const [category, setCategory] = useState(1);
+  const [category, setCategory] = useState();
   const [cookies, , removeCookies] = useCookies();
-  let imgRef = useRef();
 
   function createDish(e) {
+    if (!category) {
+      setCategory(1);
+    }
     e.preventDefault();
-    console.log(cookies.token);
-    let formData = new FormData();
 
-    formData.append("photo", imgRef.files[0]);
+    let formData = new FormData();
+    let imgValue = document.querySelector("#createFormImage");
+    console.log(category);
+    if (imgValue.files.length > 0) {
+      formData.append("photo", imgValue.files[0]);
+    }
     formData.append("name", name);
     formData.append("description", description);
     formData.append("price", price);
@@ -122,7 +127,7 @@ function CreateDishForm() {
       }}
       onSubmit={createDish}
     >
-      <input ref={imgRef} id="image" type={"file"} />
+      <input id="createFormImage" type={"file"} />
       <input
         className="subscribe-news__input border topMargin12"
         onChange={(e) => setName(e.target.value)}

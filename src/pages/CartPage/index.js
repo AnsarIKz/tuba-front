@@ -26,15 +26,21 @@ const CartOrder = observer(() => {
 
   function createOrder() {
     setFormState("pending");
+
     if (isValidPhoneNumber(phone) && tableNumber > 0 && name.length > 1) {
+      //  0 == HERE
+      //  1 == DELIEVERY
+      let order_type = orderType === "here" ? 0 : 1;
       API.post("order/create/", {
-        info: cartStore.getString(pointDetail.pointDetailDict.id, {
-          orderType,
-          address,
-          phone,
-          name,
-          tableNumber,
-        }),
+        menu_id: pointDetail.pointDetailDict.id,
+        order_type: order_type,
+        address: address,
+        table_number: tableNumber,
+        customer_phone: phone,
+        customer_name: name,
+
+        dishes: cartStore.cartListDict[pointDetail.pointDetailDict.id],
+        info: "Заказ",
         state: "pending",
       })
         .then(() => {
@@ -50,7 +56,7 @@ const CartOrder = observer(() => {
     } else {
       // oshibka
 
-      console.log("Oshibka");
+      setAlert("Ошибка", "error");
       setFormState("ready");
     }
   }

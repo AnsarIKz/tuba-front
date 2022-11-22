@@ -6,9 +6,18 @@ class CartListStore {
   deliveryPrice = 750;
   // Нужно брать из настроек КАФЕ
   cartListDict = {};
+
   currentCartId = NaN;
   constructor() {
     makeAutoObservable(this);
+  }
+
+  getCartListIds(cartId) {
+    let arr = [];
+    this.cartListDict[cartId].forEach((element) => {
+      arr.push(element.id);
+    });
+    return arr;
   }
 
   getString(cartId, data) {
