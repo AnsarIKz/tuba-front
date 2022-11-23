@@ -46,40 +46,42 @@ const DishList = () => {
       {menuListStore.menuListDict.dishes
         ?.slice(0, elementCount)
         .map(({ name, description, price, category, id, photo }) => {
-          if (previousCategory !== category?.id) {
-            previousCategory = category?.id;
-            return (
-              <>
-                <div
-                  style={{}}
-                  className="dish-list__category-name montTitle topMargin48"
-                >
-                  {category?.name}
-                </div>
+          if (category.type !== "Drinks") {
+            if (previousCategory !== category?.id) {
+              previousCategory = category?.id;
+              return (
+                <>
+                  <div
+                    style={{}}
+                    className="dish-list__category-name montTitle topMargin48"
+                  >
+                    {category?.name}
+                  </div>
+                  <Dish
+                    img={photo}
+                    newLine={true}
+                    title={name}
+                    description={description}
+                    price={price}
+                    category={category}
+                    id={id}
+                    key={id}
+                  ></Dish>
+                </>
+              );
+            } else {
+              return (
                 <Dish
+                  key={id}
                   img={photo}
-                  newLine={true}
                   title={name}
                   description={description}
                   price={price}
                   category={category}
                   id={id}
-                  key={id}
                 ></Dish>
-              </>
-            );
-          } else {
-            return (
-              <Dish
-                key={id}
-                img={photo}
-                title={name}
-                description={description}
-                price={price}
-                category={category}
-                id={id}
-              ></Dish>
-            );
+              );
+            }
           }
         })}
     </div>
@@ -94,6 +96,8 @@ function MenuPage() {
         {/* Сериализовать по категориям и создать два перебора массива */}
         <div className="montHeader">Меню</div>
         <DishList></DishList>
+
+        {/* Напитки тут */}
       </Block>
       <OrderInfo></OrderInfo>
     </>

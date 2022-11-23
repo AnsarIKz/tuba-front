@@ -26,22 +26,27 @@ const CartOrder = observer(() => {
 
   function createOrder() {
     setFormState("pending");
-
     if (isValidPhoneNumber(phone) && tableNumber > 0 && name.length > 1) {
       //  0 == HERE
       //  1 == DELIEVERY
+      let orderedDishesArr = [];
+      cartStore.cartListDict[pointDetail.pointDetailDict.id].forEach(
+        (element) => {
+          orderedDishesArr.push({ dish: element.id, count: element.count });
+        }
+      );
       let order_type = orderType === "here" ? 0 : 1;
       API.post("order/create/", {
-        menu_id: pointDetail.pointDetailDict.id,
+        menu: pointDetail.pointDetailDict.id,
         order_type: order_type,
         address: address,
         table_number: tableNumber,
         customer_phone: phone,
         customer_name: name,
 
-        dishes: cartStore.cartListDict[pointDetail.pointDetailDict.id],
+        dishes: orderedDishesArr,
         info: "Заказ",
-        state: "pending",
+        state: 0,
       })
         .then(() => {
           cartStore.clearCart(pointDetail.pointDetailDict.id);

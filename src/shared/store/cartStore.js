@@ -32,7 +32,7 @@ class CartListStore {
         if (elemArr.length - 1 === elemIndex) {
           if (data.orderType === "here") {
             str += `\nОбслуживание ${this.servicePercent}% - ${
-              this.getCartSum(cartId) / this.servicePercent //Тут нужно вместо 10 вывести данные из кафе
+              this.getCartSum(cartId) / this.servicePercent //Тутужно вместо 10 вывести данные из кафе
             }₸`;
 
             str += `\nЦена - ${this.getCartSum(cartId)}₸ \nИтого - ${
