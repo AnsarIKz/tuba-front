@@ -49,24 +49,40 @@ function getSQL(category_param) {
       .querySelector("span").innerHTML;
     let price = currentValue
       .querySelector(".dish-price__current")
-      .querySelector("b").innerHTML;
+      .querySelector("b")
+      .innerText.replace(/\s+/g, "")
+      .trim();
+
     let photo = "dishes/2022/10/08/chrome_ompxuX12c1.png";
+    let description = currentValue
+      .querySelector(".dish-description")
+      ?.querySelector("p").innerHTML;
+    if (!description) {
+      description = "";
+    }
     let category_id = category_param;
     let menu_cafe_id = 3;
 
-    let insert_template;
+    let insert_template = "";
 
     // TABLE SETTINGS
     let table_name = "api_dish";
-    let fields_values = { name, price, photo, category_id, menu_cafe_id };
+    let fields_values = {
+      name,
+      price,
+      description,
+      photo,
+      category_id,
+      menu_cafe_id,
+    };
     let fields_keys = Object.keys(fields_values).join();
 
     if (index === 0) {
-      sql += `INSERT INTO ${table_name}(${fields_keys}) values`;
+      sql += `INSERT INTO ${table_name}(${fields_keys}) values ('${name}', ${price}, '${description}', '${photo}', ${category_id}, ${menu_cafe_id}),`;
     } else if (array.length - 1 === index) {
-      insert_template = ` ('${name}', ${price}, '${photo}', ${category_id}, ${menu_cafe_id});`;
+      insert_template = ` ('${name}', ${price}, '${description}', '${photo}', ${category_id}, ${menu_cafe_id});`;
     } else {
-      insert_template = ` ('${name}', ${price}, '${photo}', ${category_id}, ${menu_cafe_id}),`;
+      insert_template = ` ('${name}', ${price}, '${description}', '${photo}', ${category_id}, ${menu_cafe_id}),`;
     }
 
     sql += insert_template;

@@ -96,7 +96,7 @@ function CreateDishForm() {
 
     let formData = new FormData();
     let imgValue = document.querySelector("#createFormImage");
-    console.log(category);
+
     if (imgValue.files.length > 0) {
       formData.append("photo", imgValue.files[0]);
     }
@@ -153,7 +153,6 @@ function CreateDishForm() {
         className="subscribe-news__input border topMargin12"
         onChange={(e) => {
           setCategory(e.target.value);
-          console.log(e.target.value);
         }}
         value={category}
         required

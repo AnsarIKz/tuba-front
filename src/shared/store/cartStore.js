@@ -78,7 +78,6 @@ class CartListStore {
     if (this.findElement(id, cartId)) {
       return false;
     } else {
-      console.log(this.cartListDict[`${cartId}`]);
       this.cartListDict[`${cartId}`].push({
         id: id,
         count: 1,

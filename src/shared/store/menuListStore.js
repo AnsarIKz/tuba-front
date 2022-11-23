@@ -2,6 +2,10 @@ import { makeAutoObservable, action } from "mobx";
 import API from "../API";
 
 class MenuListStore {
+  category_types = {
+    dishes: 0,
+    drinks: 1,
+  };
   menuListDict = {};
   state = "pending";
   constructor() {
@@ -13,9 +17,13 @@ class MenuListStore {
     API.get(`menu/list/${id}`).then(
       action("fetchSuccess", (response) => {
         console.log("GET MENULIST");
-        this.menuListDict.dishes = response.data;
+        this.menuListDict.dishes = response.data.filter(
+          (elem) => elem.category.types === this.category_types.dishes
+        );
+        this.menuListDict.drinks = response.data.filter(
+          (elem) => elem.category.types === this.category_types.drinks
+        );
 
-        this.state = "done";
         setState("done");
       }),
       action("fetchError", (error) => {

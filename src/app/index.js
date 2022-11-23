@@ -9,7 +9,7 @@ import { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Main from "../pages/MainPage";
 import PointPage from "../pages/PointPage";
-import MenuPage from "../pages/InteractiveMenuPage";
+import MenuPage, { DrinksPage } from "../pages/InteractiveMenuPage";
 import AboutUsPage from "../pages/AboutUsPage";
 import CartPage from "../pages/CartPage";
 import PointWrapper from "../shared/Hoc/PointWrapper";
@@ -66,6 +66,14 @@ function App() {
             </PointWrapper>
           }
         ></Route>
+        <Route
+          path="/interactive-menu/:id/drinks"
+          element={
+            <PointWrapper>
+              <DrinksPage></DrinksPage>
+            </PointWrapper>
+          }
+        />
 
         <Route
           path="/cart/:id"
