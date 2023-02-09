@@ -35,6 +35,8 @@ function Carousel({ eventRef }) {
 
   if (state !== "done") {
     return <></>;
+  } else if (!newsListStore.newsListArr.length) {
+    return <></>;
   } else {
     return (
       <div ref={eventRef} className="carousel">
